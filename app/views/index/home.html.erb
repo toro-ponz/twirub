@@ -1,0 +1,88 @@
+<div id="header">
+  <div id="header-content" class="center">
+    <span id="title">∂ Twirub</span>
+    <div id="header-right-menu" class="right-floater">
+      <div id="login-out-button">
+        <a>ログアウト</a>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+<div id="contents">
+  <div id="content" class="center">
+    <div id="left-column">
+      <!-- ユーザー情報 -->
+      <div id="user-information">
+        <%= image_tag @token.user.profile_banner_url, id: "my-profile-banner" %>
+        <%= image_tag @token.user.profile_image_url_https, id: "my-profile-image" %>
+        <span id="my-name">
+          <%= @token.user.name %>
+        </span>
+        <span id="my-screen-name">
+          <%= "@" + @token.user.screen_name %>
+        </span>
+        <table>
+          <tr>
+            <td>
+              <span class="profile-count">
+                <%= @token.user.friends_count %>
+              </span>
+              <span class="profile-count-unit">
+                フォロー
+              </span>
+            </td>
+            <td>
+              <span class="profile-count">
+                <%= @token.user.followers_count %>
+              </span>
+              <span class="profile-count-unit">
+                フォロワー
+              </span>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <!-- ツイートトレイ -->
+      <div id="create-status-tray">
+        <%= form_tag action: :create_status do %>
+          <%= text_area_tag :text, '', :id => 'create-status-textarea' %><br>
+          <%= submit_tag 'ツイート' %>
+        <% end %>
+      </div>
+    </div>
+    <div id="right-column">
+      <!-- ホームタイムライン -->
+      <div id="home_timeline">
+        <% @home_timeline.each do |status| %>
+        <div class="status">
+          <table class="status-table">
+            <tr>
+              <td>
+                <div>
+                  <%= image_tag status.user.profile_image_url_https, id: "user-profile-image" %>
+                </div>
+              </td>
+              <td>
+                <div>
+                  <span id="user-name">
+                    <%= status.user.name %>
+                  </span>
+                  <span id="user-screen-name">
+                    <%= "@" + status.user.screen_name %>
+                  </span>
+                  <p id="status-text">
+                    <%= status.text %>
+                  </p>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+<div id="footer"></div>

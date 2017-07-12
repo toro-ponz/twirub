@@ -1,0 +1,11 @@
+<div>
+    <p>ログイン</p>
+    <%= <%= link_to  "アプリ連携", @token.url %>
+        <div>
+            <%= form_for(@token , remote: true) do |f| %>
+                <%= f.label :pin %><br>
+                    <%= f.<%= text_field (:pin) %>
+                        <%= f.submit %>
+                            <% end %>
+        </div>
+</div>
